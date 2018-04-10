@@ -8,6 +8,6 @@ namespace Calculator
 {
     class Data
     {
-        //тестовый комментарий
+        
     }
 }
