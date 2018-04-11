@@ -8,9 +8,10 @@ namespace Calculator
 {
     class Data
     {
-        int StartNotation;
-        int EndNotation;
-        string Number;
+        // СС - система счисления
+        int StartNotation; // СС из которой переводится число
+        int EndNotation;   // СС в которую переводится число
+        string Number;     // заданное число
 
         public int GetStartNotation
         {
@@ -28,16 +29,22 @@ namespace Calculator
             set { Number = value; }
         }
 
-        public static int[] FormArray(string number)
+        public bool CorrectNumber(string number)    // проверка числа на соответствие заданной СС
+        {
+            // пример: если число задано в двоичной системе счисления, то оно должно состоять только из 0 и 1
+            return true;
+        }
+
+        public static int[] FormArray(string number) // разбиение полученной строки (числа) на символы (цифры)
         {
             int posDot = number.IndexOf(",");
-            int length;                         // длина числа без запятой
+            int length;                             // длина числа без запятой
             if (posDot == -1)
                 length = number.Length;
             else
                 length = number.Length - 1;
             int[] arr = new int[length];
-            for (int i = 0; i < length; i++)    // создание массива символов заданного числа
+            for (int i = 0; i < length; i++)        // создание массива символов заданного числа
             {
 
                 if (i < posDot)
@@ -107,6 +114,12 @@ namespace Calculator
                 }
                 return res;
             }
+        }
+
+        public static string ConvertionFromDecimal(int startNotation, int endNotation, string number) // перевод из десятичной СС в любую
+        {
+            double decimalNumber = ConvertionToDecimal(startNotation, number);
+            return null;
         }
     }
 }
