@@ -7,3 +7,6 @@ C:\Users\Zver\documents\visual studio 2015\Projects\Calculator\Calculator\obj\De
 C:\Users\Zver\documents\visual studio 2015\Projects\Calculator\Calculator\obj\Debug\Calculator.csproj.GenerateResource.Cache
 C:\Users\Zver\documents\visual studio 2015\Projects\Calculator\Calculator\obj\Debug\Calculator.exe
 C:\Users\Zver\documents\visual studio 2015\Projects\Calculator\Calculator\obj\Debug\Calculator.pdb
+C:\Users\Admin\Desktop\Калькулятор\Calculator\Calculator\bin\Debug\Calculator.exe.config
+C:\Users\Admin\Desktop\Калькулятор\Calculator\Calculator\obj\Debug\Calculator.exe
+C:\Users\Admin\Desktop\Калькулятор\Calculator\Calculator\obj\Debug\Calculator.pdb
