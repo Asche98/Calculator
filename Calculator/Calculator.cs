@@ -8,7 +8,16 @@ namespace Calculator
 {
     class Calculator
     {
-
-        // test
+        public bool SuitableNumber(string Number, int SS) // проверка числа на соответствие его СС
+        {
+            long chislo;
+            try
+            {
+                chislo = Convert.ToInt64(Number, SS);
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
+        
     }
 }
