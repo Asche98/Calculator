@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,13 +29,15 @@ namespace Calculator
             set { Number = value; }
         }
 
-        public bool CorrectNumber(string number)    // проверка числа на соответствие заданной СС
+        public bool CorrectNumber(string number, int startNotation)    // проверка числа на соответствие заданной СС
         {
-            // пример: если число задано в двоичной системе счисления, то оно должно состоять только из 0 и 1
+            int[] arr = FormArray(number);
+            for (int i = 0; i < arr.Length; i++)
+                if (arr[i] >= startNotation) return false;
             return true;
         }
 
-        public static int[] FormArray(string number) // разбиение полученной строки (числа) на символы (цифры)
+        private static int[] FormArray(string number) // разбиение полученной строки (числа) на символы (цифры)
         {
             int posDot = number.IndexOf(",");
             int length;                             // длина числа без запятой
@@ -46,39 +48,58 @@ namespace Calculator
             int[] arr = new int[length];
             for (int i = 0; i < length; i++)        // создание массива символов заданного числа
             {
-
-                if (i < posDot)
+                if (posDot == -1)
                 {
                     if (number[i] == 'A' || number[i] == 'a') arr[i] = 10;
                     else
-                    if (number[i] == 'B' || number[i] == 'b') arr[i] = 11;
+                      if (number[i] == 'B' || number[i] == 'b') arr[i] = 11;
                     else
-                    if (number[i] == 'C' || number[i] == 'c') arr[i] = 12;
+                      if (number[i] == 'C' || number[i] == 'c') arr[i] = 12;
                     else
-                    if (number[i] == 'D' || number[i] == 'd') arr[i] = 13;
+                      if (number[i] == 'D' || number[i] == 'd') arr[i] = 13;
                     else
-                    if (number[i] == 'E' || number[i] == 'e') arr[i] = 14;
+                      if (number[i] == 'E' || number[i] == 'e') arr[i] = 14;
                     else
-                    if (number[i] == 'F' || number[i] == 'f') arr[i] = 15;
+                      if (number[i] == 'F' || number[i] == 'f') arr[i] = 15;
                     else
                         arr[i] = Convert.ToInt32(Convert.ToString(number[i]));
                 }
                 else
                 {
-                    if (number[i + 1] == 'A' || number[i] == 'a') arr[i] = 10;
+                    if (i < posDot)
+                    {
+                        if (number[i] == 'A' || number[i] == 'a') arr[i] = 10;
+                        else
+                        if (number[i] == 'B' || number[i] == 'b') arr[i] = 11;
+                        else
+                        if (number[i] == 'C' || number[i] == 'c') arr[i] = 12;
+                        else
+                        if (number[i] == 'D' || number[i] == 'd') arr[i] = 13;
+                        else
+                        if (number[i] == 'E' || number[i] == 'e') arr[i] = 14;
+                        else
+                        if (number[i] == 'F' || number[i] == 'f') arr[i] = 15;
+                        else
+                            arr[i] = Convert.ToInt32(Convert.ToString(number[i]));
+                    }
                     else
+                    {
+                        if (number[i + 1] == 'A' || number[i] == 'a') arr[i] = 10;
+                        else
                     if (number[i + 1] == 'B' || number[i] == 'b') arr[i] = 11;
-                    else
+                        else
                     if (number[i + 1] == 'C' || number[i] == 'c') arr[i] = 12;
-                    else
+                        else
                     if (number[i + 1] == 'D' || number[i] == 'd') arr[i] = 13;
-                    else
+                        else
                     if (number[i + 1] == 'E' || number[i] == 'e') arr[i] = 14;
-                    else
+                        else
                     if (number[i + 1] == 'F' || number[i] == 'f') arr[i] = 15;
-                    else
-                        arr[i] = Convert.ToInt32(Convert.ToString(number[i + 1]));
+                        else
+                            arr[i] = Convert.ToInt32(Convert.ToString(number[i + 1]));
+                    }
                 }
+
             }
             return arr;
         }
@@ -90,11 +111,11 @@ namespace Calculator
             int[] arr = FormArray(number);
             if (posDot == -1)
             {
-                int degree = 0;
+                int degree = arr.Length - 1;
                 for (int i = 0; i < arr.Length; i++)
                 {
                     res = res + arr[i] * Math.Pow(startNotation, degree);
-                    degree++;
+                    degree--;
                 }
                 return res;
             }
@@ -116,10 +137,88 @@ namespace Calculator
             }
         }
 
+        static string letter = "ABCDEF";
+        private static string FormResultNumber(string sym)
+        {
+            string s = "";
+            if (Convert.ToInt32(sym) > 10)
+                s += letter.Substring(Convert.ToInt32(sym) - 10, 1);
+            else
+                s += sym;
+            return s;
+        }
+
         public static string ConvertionFromDecimal(int startNotation, int endNotation, string number) // перевод из десятичной СС в любую
         {
             double decimalNumber = ConvertionToDecimal(startNotation, number);
-            return null;
+            string decNum = Convert.ToString(decimalNumber);
+            int posDot = decNum.IndexOf(",");
+            int[] arr = FormArray(decNum);
+            double left = 0, right = 0;
+            string res;
+            if (posDot == -1)
+            {
+                res = "";
+                int num = Convert.ToInt32(decimalNumber);
+                int chast = Convert.ToInt32(decimalNumber);
+                ArrayList numTemp = new ArrayList();
+                while (chast > 0)
+                {
+                    chast = chast / endNotation;
+                    numTemp.Add(num - chast * endNotation);
+                    num = chast;
+                }
+                int j;
+                for (j = numTemp.Count - 1; j >= 0; j--)
+                    res += FormResultNumber(numTemp[j].ToString());
+            }
+            else
+            {
+                string leftStr = "";
+                for (int i = 0; i < posDot; i++)
+                    leftStr = leftStr + arr[i];
+                left = Convert.ToInt32(leftStr);
+                right = decimalNumber - left;
+
+                string newNum = "";
+                int num = Convert.ToInt32(left);
+                int chast = Convert.ToInt32(left);
+                ArrayList numTemp = new ArrayList();
+                while (chast > 0)
+                {
+                    chast = chast / endNotation;
+                    numTemp.Add(num - chast * endNotation);
+                    num = chast;
+                }
+                int j;
+                for (j = numTemp.Count - 1; j >= 0; j--)
+                    newNum += FormResultNumber(numTemp[j].ToString());
+
+                string newNumR = "";
+                double temp = right;
+                ArrayList numTempR = new ArrayList();
+                for (int i = 0; i < 8; i++)
+                {
+                    temp = temp * endNotation;
+                    string tempStr = Convert.ToString(temp);
+                    if (tempStr.IndexOf(",") != -1)
+                    {
+                        numTempR.Add(tempStr.Substring(0, tempStr.IndexOf(",")));
+                        temp = temp - Convert.ToInt32(tempStr.Substring(0, tempStr.IndexOf(",")));
+                    }
+                    else
+                    {
+                        numTempR.Add(tempStr.Substring(0));
+                        break;
+                    }
+                }
+                for (j = 0; j < numTempR.Count; j++)
+                    newNumR += FormResultNumber(numTempR[j].ToString());
+
+                res = newNum + "," + newNumR;
+
+            }
+            return res;
         }
     }
 }
