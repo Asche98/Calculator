@@ -10,3 +10,13 @@ C:\Users\Zver\documents\visual studio 2015\Projects\Calculator\Calculator\obj\De
 C:\Users\Admin\Desktop\Калькулятор\Calculator\Calculator\bin\Debug\Calculator.exe.config
 C:\Users\Admin\Desktop\Калькулятор\Calculator\Calculator\obj\Debug\Calculator.exe
 C:\Users\Admin\Desktop\Калькулятор\Calculator\Calculator\obj\Debug\Calculator.pdb
+C:\Users\jancu_000\Desktop\проект\Calculator\Calculator\bin\Debug\Calculator.exe.config
+C:\Users\jancu_000\Desktop\проект\Calculator\Calculator\bin\Debug\Calculator.exe
+C:\Users\jancu_000\Desktop\проект\Calculator\Calculator\bin\Debug\Calculator.pdb
+C:\Users\jancu_000\Desktop\проект\Calculator\Calculator\obj\Debug\Calculator.csprojResolveAssemblyReference.cache
+C:\Users\jancu_000\Desktop\проект\Calculator\Calculator\obj\Debug\Calculator.Form1.resources
+C:\Users\jancu_000\Desktop\проект\Calculator\Calculator\obj\Debug\Calculator.Properties.Resources.resources
+C:\Users\jancu_000\Desktop\проект\Calculator\Calculator\obj\Debug\Calculator.csproj.GenerateResource.cache
+C:\Users\jancu_000\Desktop\проект\Calculator\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+C:\Users\jancu_000\Desktop\проект\Calculator\Calculator\obj\Debug\Calculator.exe
+C:\Users\jancu_000\Desktop\проект\Calculator\Calculator\obj\Debug\Calculator.pdb
