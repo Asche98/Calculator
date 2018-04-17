@@ -17,9 +17,13 @@ namespace Calculator
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void translate_Click(object sender, EventArgs e)
         {
-
+            string Number = textBox1.Text;
+            string SS1 = listBox1.Text;
+            string SS2 = listBox2.Text;
+            string res = Calculator.Result(Number, SS1, SS2);
+            result.Text = res;
         }
     }
 }

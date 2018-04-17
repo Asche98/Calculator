@@ -142,6 +142,7 @@
             this.translate.TabIndex = 8;
             this.translate.Text = "Перевести";
             this.translate.UseVisualStyleBackColor = true;
+            this.translate.Click += new System.EventHandler(this.translate_Click);
             // 
             // Form1
             // 
@@ -162,7 +163,6 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Калькулятор систем счисления";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
