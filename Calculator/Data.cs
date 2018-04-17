@@ -104,7 +104,7 @@ namespace Calculator
             return arr;
         }
 
-        public static double ConvertionToDecimal(int startNotation, string number) // перевод из любой СС в десятичную
+        private static double ConvertionToDecimal(int startNotation, string number) // перевод из любой СС в десятичную
         {
             int posDot = number.IndexOf(",");
             double res = 0;
