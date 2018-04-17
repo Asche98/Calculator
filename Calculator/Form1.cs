@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Calculator
 {
@@ -18,6 +19,8 @@ namespace Calculator
         }
 
       //  public static string Number { get => number; set => number = value; }
+
+        Regex rgx = new Regex(@"(?<!\S)\b[A-Fa-f\d]+(?!\S)\b");
 
         private void translate_Click(object sender, EventArgs e)
         {
@@ -31,7 +34,7 @@ namespace Calculator
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" || listBox1.Text == "" || listBox2.Text == "" )
+            if (!rgx.IsMatch(textBox1.Text)  || listBox1.Text == "" || listBox2.Text == "" )
             {
                 translate.Enabled = false;
             }
@@ -43,7 +46,7 @@ namespace Calculator
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" || listBox1.Text == "" || listBox2.Text == "")
+            if (!rgx.IsMatch(textBox1.Text) || listBox1.Text == "" || listBox2.Text == "")
             {
                 translate.Enabled = false;
             }
@@ -55,7 +58,7 @@ namespace Calculator
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" || listBox1.Text == "" || listBox2.Text == "")
+            if (!rgx.IsMatch(textBox1.Text) || listBox1.Text == "" || listBox2.Text == "")
             {
                 translate.Enabled = false;
             }
