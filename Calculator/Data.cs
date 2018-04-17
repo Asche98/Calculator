@@ -29,7 +29,7 @@ namespace Calculator
             set { Number = value; }
         }
 
-        public bool CorrectNumber(string number, int startNotation)    // проверка числа на соответствие заданной СС
+        public static bool CorrectNumber(string number, int startNotation)    // проверка числа на соответствие заданной СС
         {
             int[] arr = FormArray(number);
             for (int i = 0; i < arr.Length; i++)
@@ -148,7 +148,8 @@ namespace Calculator
             return s;
         }
 
-        public static string ConvertionFromDecimal(int startNotation, int endNotation, string number) // перевод из десятичной СС в любую
+        public static string ConvertionFromDecimal(int startNotation, int endNotation, string number)
+            // перевод из десятичной СС в любую
         {
             double decimalNumber = ConvertionToDecimal(startNotation, number);
             string decNum = Convert.ToString(decimalNumber);

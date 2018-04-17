@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Calculator
 {
@@ -17,9 +18,71 @@ namespace Calculator
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+      //  public static string Number { get => number; set => number = value; }
 
+        Regex rgx = new Regex(@"(?<!\S)\b[A-Fa-f\d]+(?!\S)\b");
+
+        private void translate_Click(object sender, EventArgs e)
+        {
+            string Number = textBox1.Text;
+            string SS1 = listBox1.Text;
+            string SS2 = listBox2.Text;
+            try
+            {
+                string res = Calculator.Result(Number, SS1, SS2);
+                result.Text = res;
+            }
+            catch
+            {
+                MessageBox.Show("Неверный формат! Возможно, введено слишком большое число.");
+            }
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (!rgx.IsMatch(textBox1.Text)  || listBox1.Text == "" || listBox2.Text == "" )
+            {
+                translate.Enabled = false;
+            }
+            else
+            {
+                translate.Enabled = true;
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!rgx.IsMatch(textBox1.Text) || listBox1.Text == "" || listBox2.Text == "")
+            {
+                translate.Enabled = false;
+            }
+            else
+            {
+                translate.Enabled = true;
+            }
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!rgx.IsMatch(textBox1.Text) || listBox1.Text == "" || listBox2.Text == "")
+            {
+                translate.Enabled = false;
+            }
+            else
+            {
+                translate.Enabled = true;
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 'A' && ch != 'B' && ch != 'C' && ch != 'D' && ch != 'E' && ch != 'F' && ch != 'a' && ch != 'b' && ch != 'c' && ch != 'd' && ch != 'e' && ch != 'f') //Если символ, введенный с клавы - не цифра (IsDigit),
+            {
+                e.Handled = true;// то событие не обрабатывается. ch!=8 (8 - это Backspace)
+            }
         }
     }
 }
